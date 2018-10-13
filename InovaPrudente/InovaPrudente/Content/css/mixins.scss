@@ -1,0 +1,90 @@
+﻿/* Mixins */
+/*================================================================*/
+@mixin box-shadow($offset-x, $offset-y, $color, $blur-radius: 0, $spread-radius: 0) {
+    -moz-box-shadow: $offset-x $offset-y $blur-radius $spread-radius $color;
+    -webkit-box-shadow: $offset-x $offset-y $blur-radius $spread-radius $color;
+    box-shadow: $offset-x $offset-y $blur-radius $spread-radius $color;
+}
+
+@mixin text-overflow($tipo) {
+    -o-text-overflow: $tipo;
+    text-overflow: $tipo;
+}
+
+@mixin transition-full($transition...) {
+    -moz-transition: $transition;
+    -o-transition: $transition;
+    -webkit-transition: $transition;
+    transition: $transition;
+}
+
+@mixin transition($property,$duration,$timing-function,$delay: 0s) {
+    -o-transition: $property $duration $timing-function $delay;
+    -moz-transition: $property $duration $timing-function $delay;
+    -webkit-transition: $property $duration $timing-function $delay;
+    transition: $property $duration $timing-function $delay;
+}
+
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    border-radius: $radius;
+}
+
+@mixin display-flex ($important: "") {
+    display: -webkit-box unquote($important);
+    display: -moz-box unquote($important);
+    display: -ms-flexbox unquote($important);
+    display: -webkit-flex unquote($important);
+    display: flex unquote($important);
+}
+
+@mixin display-inline-flex {
+    display: -webkit-inline-flex;
+    display: inline-flex;
+}
+
+@mixin flex-flow($valor) {
+    -webkit-flex-flow: $valor;
+    -moz-flex-flow: $valor;
+    flex-flow: $valor;
+}
+
+@mixin flex-wrap($valor...) {
+    -webkit-flex-wrap: $valor;
+    -moz-flex-wrap: $valor;
+    -ms-flex-wrap: $valor;
+    flex-wrap: $valor;
+}
+
+@mixin flex-direction($valor) {
+    -webkit-flex-direction: $valor;
+    -moz-flex-direction: $valor;
+    -ms-flex-direction: $valor;
+    flex-direction: $valor;
+}
+
+@mixin flex-grow($valor) {
+    -webkit-flex-grow: $valor;
+    flex-grow: $valor;
+}
+
+@mixin justify-content($valor) {
+    -webkit-justify-content: $valor;
+    -moz-justify-content: $valor;
+    -ms-justify-content: $valor;
+    justify-content: $valor;
+}
+
+@mixin limitar-tamanho-texto {
+    overflow: hidden;
+    white-space: nowrap;
+    @include text-overflow(ellipsis);
+}
+
+@mixin icone-seta {
+    margin-top: 30px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
