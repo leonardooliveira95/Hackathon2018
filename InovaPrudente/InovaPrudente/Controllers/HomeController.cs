@@ -32,6 +32,30 @@ namespace InovaPrudente.Controllers
             return PartialView("_AlterarDataEntrega", vm);
         }
 
+        public ActionResult EntregarArmario()
+        {
+            EntregarArmarioViewModel vm = new EntregarArmarioViewModel();
+
+            vm.EnderecoAtual = "Manoel Goulart, 250, Presidente Prudente";
+            vm.Locais = new List<LocalViewModel>
+            {
+                new LocalViewModel
+                {
+                    Endereco = "Carrefour Presidente Prudente",
+                    Latitude = 34.397,
+                    Longitude = 150.644
+                },
+                new LocalViewModel
+                {
+                    Endereco = "Muffato Max Presidente Prudente",
+                    Latitude = 37.397,
+                    Longitude = 180.644
+                }
+            };
+
+            return PartialView("_EntregarArmario", vm);
+        }
+
         [HttpPost]
         public ActionResult CalcularValorPrecoDistancia(double distancia)
         {

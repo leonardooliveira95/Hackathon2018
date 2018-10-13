@@ -452,6 +452,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AlterarDataEntregaViewModel.cs" />
+    <Compile Include="Models\EntregarArmarioViewModel.cs" />
+    <Compile Include="Models\LocalViewModel.cs" />
     <Compile Include="Models\TrocarEnderecoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -660,6 +662,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\_TrocarEndereco.cshtml" />
     <Content Include="Views\Home\_AlterarDataEntrega.cshtml" />
+    <Content Include="Views\Home\_EntregarArmario.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

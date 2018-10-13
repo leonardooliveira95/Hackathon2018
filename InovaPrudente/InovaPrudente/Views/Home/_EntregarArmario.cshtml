@@ -1,0 +1,38 @@
+﻿@using InovaPrudente.Models
+@model EntregarArmarioViewModel
+
+<div id="div-entregar-armario">
+
+    <h4>Entregar NuArmario</h4>
+    <div class="divisor"></div>
+
+    <div id="selecao-armario">
+        <div class="row" style="margin-bottom:20px;">
+            <div class="col">
+                A entrega está programada para o endereço <b>@Model.EnderecoAtual</b>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-md-5 d-flex align-items-center">
+                <span class="fa fa-home icone-form"></span>
+                <input type="text" class="form-control" placeholder="Endereço do NuArmario" id="input-texto-armario" />
+                <button class="btn btn-primary" type="button" id="botao-escolher-armario">Escolher</button>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col">
+                <div id="map" data-endereco-atual="@Model.EnderecoAtual"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    SelecionarModulo.armarios = @Html.Raw(Json.Encode(Model.Locais));
+</script>
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9fSb3smGbtychRD3r70GrQ9Vy_zMW09U&callback=SelecionarModulo.carregarMapaArmario&libraries=geometry">
+</script>

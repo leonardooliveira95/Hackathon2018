@@ -3,10 +3,13 @@ let markers = [];
 
 const SelecionarModulo = (function () {
 
+    let _armarios = [];
+
     let inicializar = () => {
 
         $("#botao-alterar-endereco").click(_clickAlterarEndereco);
         $("#botao-alterar-data-entrega").click(_clickAlterarDataEntrega);
+        $("#botao-entregar-armario").click(_clickEntregarArmario);
     };
 
     let _desabilitarEnter = () => {
@@ -31,17 +34,17 @@ const SelecionarModulo = (function () {
             url: urlBase + "Home/TrocarEndereco",
             type: "GET"
         })
-        .done((data) => {
+            .done((data) => {
 
-            $(".container-opcao-selecionada").html(data).addClass("fadeIn");
-            $("#botao-escolher-endereco").click(_clickBotaoEscolherEndereco);
-            $("#botao-confirmar-alteracao-endereco").click(_clickBotaoConfirmarAlteracaoEndereco);
-            $("#botao-escolher-outro-local").click(_clickBotaoEscolherOutroLocal);
-            $("#input-texto-endereco").on("keypress", _keypressTextoEndereco);
+                $(".container-opcao-selecionada").html(data).addClass("fadeIn");
+                $("#botao-escolher-endereco").click(_clickBotaoEscolherEndereco);
+                $("#botao-confirmar-alteracao-endereco").click(_clickBotaoConfirmarAlteracaoEndereco);
+                $("#botao-escolher-outro-local").click(_clickBotaoEscolherOutroLocal);
+                $("#input-texto-endereco").on("keypress", _keypressTextoEndereco);
 
-            _desabilitarEnter();
+                _desabilitarEnter();
 
-        });
+            });
 
     };
 
@@ -97,14 +100,14 @@ const SelecionarModulo = (function () {
             url: urlBase + "Home/AlterarDataEntrega",
             type: "GET"
         })
-        .done((data) => {
+            .done((data) => {
 
-            $(".container-opcao-selecionada").html(data).addClass("fadeIn");
-            $("#botao-confirmar-nova-data-entrega").click(_clickBotaoConfirmarNovaDataEntrega);
-            
-            _desabilitarEnter();
+                $(".container-opcao-selecionada").html(data).addClass("fadeIn");
+                $("#botao-confirmar-nova-data-entrega").click(_clickBotaoConfirmarNovaDataEntrega);
 
-        });
+                _desabilitarEnter();
+
+            });
 
     };
 
@@ -112,10 +115,39 @@ const SelecionarModulo = (function () {
 
         let vetInput = $("#input-nova-data-entrega").val().split("-");
         let data = new Date(vetInput[0], parseInt(vetInput[1]) - 1, vetInput[2]);
-        
+
 
         $("#div-mensagem-confirmacao-data").show().addClass("fadeIn");
         $("#nova-data-entrega").html(data.toLocaleDateString());
+    };
+
+    let _clickEntregarArmario = (event) => {
+
+        let botao = $(event.currentTarget);
+
+        _escolherOpcao(botao);
+
+        $.ajax({
+            url: urlBase + "Home/EntregarArmario",
+            type: "GET"
+        })
+            .done((data) => {
+
+                $(".container-opcao-selecionada").html(data).addClass("fadeIn");
+                $("#botao-escolher-armario").click(_clickBotaoEscolherArmario);
+
+                _desabilitarEnter();
+
+            });
+
+    };
+
+    let _clickBotaoEscolherArmario = (event) => {
+
+        let botao = $(event.currentTarget);
+
+
+
     };
 
     let _escolherOpcao = (botaoSelecionado) => {
@@ -188,6 +220,36 @@ const SelecionarModulo = (function () {
         });
     };
 
+    let carregarMapaArmario = () => {
+
+        map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 4,
+            center: { lat: -34.397, lng: 150.644 }
+        });
+
+        $.each(SelecionarModulo.armarios, (index, valor) => {
+
+            let geocoder = new google.maps.Geocoder();
+
+            geocoder.geocode({ "address": valor.Endereco }, (results, status) => {
+
+                let latLng = { lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng() };
+
+                let marker = new google.maps.Marker({
+                    position: latLng,
+                    map: map,
+                    title: valor.Endereco
+                });
+
+                map.setZoom(17);
+                map.panTo(marker.position);
+
+            });
+            
+        });
+
+    };
+
     let _calcularValorPrecoDistancia = (distancia) => {
 
         $.ajax({
@@ -223,7 +285,9 @@ const SelecionarModulo = (function () {
 
     return {
         inicializar: inicializar,
-        carregarMapa: carregarMapa
+        carregarMapa: carregarMapa,
+        carregarMapaArmario: carregarMapaArmario,
+        armarios: _armarios
     }
 
 })();
