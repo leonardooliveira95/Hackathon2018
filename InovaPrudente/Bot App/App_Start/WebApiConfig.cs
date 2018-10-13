@@ -8,6 +8,8 @@ namespace Bot_App
     {
         public static void Register(HttpConfiguration config)
         {
+            config.EnableCors();
+            
             // Json settings
             config.Formatters.JsonFormatter.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
