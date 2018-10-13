@@ -16,7 +16,7 @@
         msg.removeClass("modelo-mensagem");
 
         $(".container-mensagens").append(msg);
-        
+
         msg.show();
 
         _enviarMensagemServidor(texto);
@@ -31,28 +31,32 @@
             contentType: "application/x-www-form-urlencoded",
             data: {
 
-                type: "message",
-                serviceUrl: "http://localhost:3979/",
-                text: texto,
-                from: {
-                    id: "default-user",
-                    name: "User"
+                "type": "message",
+                "text": "iopopiop",
+                "from": {
+                    "id": "default-user",
+                    "name": "User"
                 },
-                locale: "pt-BR",
-                textFormat: "plain",
-                timestamp: "2018-10-13T22:38:58.299Z",
-                channelData: {
-                    clientActivityId: "1539470336139.2932336851935673.0"
+                "locale": "pt-BR",
+                "textFormat": "plain",
+                "timestamp": "2018-10-13T23:29:21.716Z",
+                "channelData": {
+                    "clientActivityId": "1539470336139.2932336851935673.4"
                 },
-                entities: [
-                    {
-                        type: "ClientCapabilities",
-                        requiresBotState: true,
-                        supportsTts: true,
-                        supportsListening: true
-                    }
-                ],
-                id: "250h4dah9c06c"
+                "id": "k2656kdbh2d",
+                "channelId": "emulator",
+                "localTimestamp": "2018-10-13T20:29:21-03:00",
+                "recipient": {
+                    "id": "m226mfj49gd9",
+                    "name": "Bot"
+                },
+                "conversation": {
+                    "id": "df5821a8jhk8"
+                },
+                "serviceUrl": "http://localhost:50821"
+
+
+
             }
         })
         .done((data) => {
