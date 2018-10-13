@@ -434,8 +434,10 @@
     <Content Include="node_modules\popper.js\dist\umd\popper.min.js" />
     <Content Include="Scripts\app\AlterarDataEntrega.js" />
     <Content Include="Scripts\app\BackdropLoadingModulo.js" />
+    <Content Include="Scripts\app\ChatBotModulo.js" />
     <Content Include="Scripts\app\dist\BackdropLoadingModulo.js" />
     <Content Include="Scripts\app\dist\BackdropLoadingModulo.min.js" />
+    <Content Include="Scripts\app\dist\ChatBotModulo.js" />
     <Content Include="Scripts\app\dist\Index.js" />
     <Content Include="Scripts\app\dist\Index.min.js" />
     <Content Include="Scripts\app\dist\MensagensModulo.js" />
@@ -447,6 +449,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ChatBotController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -663,6 +666,7 @@
     <Content Include="Views\Home\_TrocarEndereco.cshtml" />
     <Content Include="Views\Home\_AlterarDataEntrega.cshtml" />
     <Content Include="Views\Home\_EntregarArmario.cshtml" />
+    <Content Include="Views\ChatBot\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

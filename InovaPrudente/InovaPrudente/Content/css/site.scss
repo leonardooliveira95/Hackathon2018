@@ -149,3 +149,40 @@ nav {
 .info-detalhe {
     margin-right: 10px;
 }
+
+.container-mensagens {
+    
+    height:500px;
+    max-height:500px;
+    overflow:auto;
+    border:1px solid $cor-vermelho;
+    margin:15px;
+    
+    @include border-radius(4px);
+    @include display-flex();
+    @include flex-direction(column);
+    
+    @include justify-content(flex-end);
+    align-items: flex-end;
+    
+
+    .usuario{
+        margin-left:auto !important;
+    }
+
+    .mensagem {
+        border:1px solid $cor-azul;
+        background-color: $cor-azul;
+        @include border-radius(4px);
+        color: white;
+        padding:10px;
+        margin:10px;
+        width:30%;
+        flex-shrink:0;
+    }
+
+}
+
+.container-form{
+    margin-left:15px;
+}

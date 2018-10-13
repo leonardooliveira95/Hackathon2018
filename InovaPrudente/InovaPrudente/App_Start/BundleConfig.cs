@@ -48,7 +48,8 @@ namespace InovaPrudente
                         "~/node_modules/pnotify/dist/pnotify.mobile.js",
                         "~/Scripts/App/dist/backdropLoadingModulo.js",
                         "~/Scripts/App/dist/mensagensModulo.js",
-                        "~/Scripts/App/dist/index.js"));
+                        "~/Scripts/App/dist/index.js",
+                        "~/Scripts/App/dist/ChatBotModulo.js"));
 
             BundleTable.EnableOptimizations = !HttpContext.Current.IsDebuggingEnabled;
         }
