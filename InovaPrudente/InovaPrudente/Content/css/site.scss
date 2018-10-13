@@ -7,7 +7,7 @@ html {
 }
 
 body {
-    background-image: linear-gradient(180deg, #c3c5e0, #fff);
+    background-image: linear-gradient(180deg, #c3c5e0, #ececec);
     background-attachment: fixed;
     background-repeat: no-repeat;
     margin-bottom: 80px;
@@ -77,6 +77,8 @@ body {
     height: 60px;
     line-height: 60px;
     background-color: #343A40;
+
+    border-top:5px solid $cor-bege;
 }
 
 .container-logo-inova {
@@ -93,5 +95,47 @@ body {
 #resultado-selecao-novo-endereco {
 
     margin-top:50px;
+
+}
+
+nav {
+
+    .nav-item.active {
+
+        .nav-link {
+            color: $cor-bege !important;
+        }
+    }
+
+    .nav-link {
+
+        @include transition(all, 0.2s, ease-in-out);
+    }
+
+    .nav-link:hover {
+        color: #e4e1cd !important;
+
+        @include transition(all, 0.2s, ease-in-out);
+    }
+}
+
+.container-usuario {
+    
+    cursor:pointer;
+    margin-left: auto;
+    color: rgba(255, 255, 255, 0.5);
+
+    @include transition(all, 0.2s, ease-in-out);
+
+    &:hover {
+        color: #e4e1cd !important;
+
+        @include transition(all, 0.2s, ease-in-out);
+    }
+}
+
+.info-detalhe {
+
+    margin-right:10px;
 
 }
