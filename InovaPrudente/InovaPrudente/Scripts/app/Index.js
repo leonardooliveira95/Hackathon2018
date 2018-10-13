@@ -8,6 +8,18 @@ const SelecionarModulo = (function () {
         $("#botao-alterar-endereco").click(_clickAlterarEndereco);
     };
 
+    let _desabilitarEnter = () => {
+
+        $('form').on('keyup keypress', function (e) {
+            var keyCode = e.keyCode || e.which;
+            if (keyCode === 13) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+    }
+
     let _clickAlterarEndereco = (event) => {
 
         let botao = $(event.currentTarget);
@@ -20,19 +32,58 @@ const SelecionarModulo = (function () {
         })
         .done((data) => {
 
-            $(".container-opcao-selecionada").html(data);
+            $(".container-opcao-selecionada").html(data).addClass("fadeIn");
             $("#botao-escolher-endereco").click(_clickBotaoEscolherEndereco);
+            $("#botao-confirmar-alteracao-endereco").click(_clickBotaoConfirmarAlteracaoEndereco);
+            $("#botao-escolher-outro-local").click(_clickBotaoEscolherOutroLocal);
+            $("#input-texto-endereco").on("keypress", _keypressTextoEndereco);
+
+            _desabilitarEnter();
 
         });
 
     };
 
+    let _keypressTextoEndereco = (event) => {
+
+        if (event.which == 10 || event.which == 13) {
+            _clickBotaoEscolherEndereco();
+        }
+    };
+
     let _clickBotaoEscolherEndereco = () => {
 
-        let endereco = $("#input-texto-endereco").val();
+        let input = $("#input-texto-endereco");
+
+        input.prop("disabled", true);
+        $("#botao-escolher-endereco").prop("disabled", true);
+
+        let endereco = input.val();
 
         _exibirPontoMapa(endereco);
 
+    };
+
+    let _clickBotaoConfirmarAlteracaoEndereco = () => {
+
+        _scrollToBottom();
+
+        let botoesContainer = $(".container-botoes-confirmacao button");
+        botoesContainer.prop("disabled", true);
+
+        $("#resultado-confirmacao-troca-endereco").fadeIn("fast");
+
+    };
+
+    let _clickBotaoEscolherOutroLocal = () => {
+
+        _scrollTo("#selecao-novo-endereco");
+
+        let input = $("#input-texto-endereco");
+
+        input.prop("disabled", false);
+        $("#botao-escolher-endereco").prop("disabled", false);
+        $("#resultado-selecao-novo-endereco").fadeOut("fast");
     };
 
     let _escolherOpcao = (botaoSelecionado) => {
@@ -41,8 +92,6 @@ const SelecionarModulo = (function () {
         botoesContainer.prop("disabled", true);
         botoesContainer.removeClass("btn-primary");
 
-        botaoSelecionado.prop("disabled", false);
-        botaoSelecionado.addClass("active");
         botaoSelecionado.addClass("btn-primary");
 
     };
@@ -66,8 +115,11 @@ const SelecionarModulo = (function () {
                 map.panTo(marker.position);
 
                 let distancia = google.maps.geometry.spherical.computeDistanceBetween(marker.position, markers[0].position);
-
                 _calcularValorPrecoDistancia(distancia);
+
+                $("#span-novo-endereco").html(endereco);
+
+
             }
             else {
                 MensagensModulo.exibeMensagemErro("Erro ao buscar dados do Google Maps");
@@ -115,9 +167,27 @@ const SelecionarModulo = (function () {
         })
         .done((data) => {
 
-            MensagensModulo.exibeMensagemInformacao("O novo valor do frete é " + data.valor)
+            $("#span-novo-valor-frete").html("R$ " + data.valor);
+            $("#resultado-selecao-novo-endereco").show().removeClass("fadeIn").addClass("fadeIn");
+
+            _scrollToBottom();
+
 
         });
+    };
+
+    let _scrollTo = (seletor) => {
+
+        $('html, body').animate({
+            scrollTop: $(seletor).offset().top
+        }, 800);
+
+    };
+
+    let _scrollToBottom = () => {
+        $('html, body').animate({
+            scrollTop: document.body.scrollHeight
+        }, 800);
     };
 
     return {

@@ -104,6 +104,7 @@
   <ItemGroup>
     <Content Include="Content\css\site.css" />
     <Content Include="Content\css\site.min.css" />
+    <Content Include="Content\img\Logo_Inova_Prudente.png" />
     <Content Include="Global.asax" />
     <Content Include="gulpfile.js" />
     <Content Include="node_modules\animate.css\animate.css" />
