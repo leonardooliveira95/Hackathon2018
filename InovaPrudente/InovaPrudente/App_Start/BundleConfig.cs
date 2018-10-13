@@ -32,8 +32,8 @@ namespace InovaPrudente
                 .Include("~/node_modules/pnotify/dist/pnotify.css")
                 .Include("~/node_modules/pnotify/dist/pnotify.mobile.css")
                 .Include("~/node_modules/pnotify/dist/pnotify.buttons.css")
-                .Include("~/Content/CSS/flatly.css")
-                .Include("~/Content/CSS/site.css");
+                .Include("~/Content/css/flatly.css")
+                .Include("~/Content/css/site.css");
 
             css.Orderer = new AsIsBundleOrderer();
             bundles.Add(css);
@@ -50,7 +50,7 @@ namespace InovaPrudente
                         "~/Scripts/App/dist/mensagensModulo.js",
                         "~/Scripts/App/dist/index.js"));
 
-            BundleTable.EnableOptimizations = HttpContext.Current.IsDebuggingEnabled;
+            BundleTable.EnableOptimizations = !HttpContext.Current.IsDebuggingEnabled;
         }
     }
 }

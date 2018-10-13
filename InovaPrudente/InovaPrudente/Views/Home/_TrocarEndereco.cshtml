@@ -1,0 +1,68 @@
+﻿@using InovaPrudente.Models
+@model TrocarEnderecoViewModel
+
+<div class="container-trocar-endereco">
+
+    <h4>Trocar endereço </h4>
+    <div class="divisor"></div>
+
+    <form>
+        <div id="selecao-novo-endereco">
+            <div class="row" style="margin-bottom:20px;">
+                <div class="col">
+                    A entrega está programada para o endereço <b>@Model.EnderecoAtual</b>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-5 d-flex align-items-center">
+                    <span class="fa fa-home icone-form"></span>
+                    <input type="text" class="form-control" placeholder="Novo Endereço e número ou CEP" id="input-texto-endereco" />
+                    <button class="btn btn-primary" type="button" id="botao-escolher-endereco">Escolher</button>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div id="map" data-endereco-atual="@Model.EnderecoAtual"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="resultado-selecao-novo-endereco" style="display:none;" class="animated">
+            
+            <h4>Confirmação</h4>
+            <div class="divisor"></div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="alert alert-info">
+                        <span class="fa fa-dollar"></span>    
+                        Para o endereço <b id="span-novo-endereco"></b>
+                        o novo valor do frete é 
+                        <b id="span-novo-valor-frete"></b>, deseja confirmar a entrega neste local?
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col container-botoes-confirmacao">
+                    <button type="button" class="btn btn-success" id="botao-confirmar-alteracao-endereco">Confirmar</button>
+                    <button type="button" class="btn btn-secondary" id="botao-escolher-outro-local">Quero escolher outro local</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="resultado-confirmacao-troca-endereco" class="animated" style="display:none; margin-top:25px;">
+            <h4>Resultado</h4>
+            <div class="divisor"></div>
+            <div class="alert alert-success"><span class="fa fa-check icone"></span>Tudo pronto! O pacote será entregue no novo endereço</div>
+        </div>
+
+    </form>
+
+</div>
+
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9fSb3smGbtychRD3r70GrQ9Vy_zMW09U&callback=SelecionarModulo.carregarMapa&libraries=geometry">
+</script>

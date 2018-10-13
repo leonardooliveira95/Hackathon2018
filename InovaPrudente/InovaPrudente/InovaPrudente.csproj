@@ -104,6 +104,7 @@
   <ItemGroup>
     <Content Include="Content\css\site.css" />
     <Content Include="Content\css\site.min.css" />
+    <Content Include="Content\img\Logo_Inova_Prudente.png" />
     <Content Include="Global.asax" />
     <Content Include="gulpfile.js" />
     <Content Include="node_modules\animate.css\animate.css" />
@@ -448,6 +449,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\TrocarEnderecoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -647,10 +649,13 @@
     <Content Include="node_modules\popper.js\README.md" />
     <Content Include="Content\css\site.scss" />
     <Content Include=".babelrc" />
+    <Content Include="Content\css\mixins.scss" />
+    <Content Include="Content\css\variables.scss" />
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\_TrocarEndereco.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -661,7 +666,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="node_modules\popper.js\index.d.ts" />

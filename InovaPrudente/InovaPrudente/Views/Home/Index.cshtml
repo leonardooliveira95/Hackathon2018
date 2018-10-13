@@ -1,7 +1,41 @@
-﻿
-@{
-    ViewBag.Title = "Index";
+﻿@{
+    ViewBag.Title = "Início";
 }
 
-<h2>Index</h2>
+<div class="row">
+    <div class="col">
+
+        <h2>Pacote #5465KYRT</h2>
+        <div class="divisor"></div>
+
+        <span class="info-detalhe">
+
+            <span class="fa fa-calendar icone"></span>
+            <b>Data de entrega: 20/10/2018</b>
+        </span>
+
+        <span class="info-detalhe">
+            <span class="fa fa-home icone"></span>
+            <b>Endereço: Avenida fim do mundo, 00</b>
+        </span>
+        
+        <span class="info-detalhe">
+            <span class="fa fa-user icone"></span>
+            <b>Destinatário: Leonardo</b>
+        </span>
+        
+        <div class="container-botoes">
+            @*<button type="button" class="btn btn-success"><span class="fa fa-check icone"></span></button>*@
+            <button type="button" class="btn btn-primary"><span class="fa fa-calendar icone"></span>Entregue outro dia</button>
+            <button type="button" class="btn btn-primary" id="botao-alterar-endereco"><span class="fa fa-home icone"></span>Entregue em outro lugar</button>
+            <button type="button" class="btn btn-primary"><span class="fa fa-lock icone"></span>Entregue NuArmario</button>
+        </div>
+
+        <div class="container-opcao-selecionada animated">
+
+        </div>
+
+    </div>
+</div>
+
 
