@@ -6,6 +6,7 @@ const SelecionarModulo = (function () {
     let inicializar = () => {
 
         $("#botao-alterar-endereco").click(_clickAlterarEndereco);
+        $("#botao-alterar-data-entrega").click(_clickAlterarDataEntrega);
     };
 
     let _desabilitarEnter = () => {
@@ -86,6 +87,37 @@ const SelecionarModulo = (function () {
         $("#resultado-selecao-novo-endereco").fadeOut("fast");
     };
 
+    let _clickAlterarDataEntrega = (event) => {
+
+        let botao = $(event.currentTarget);
+
+        _escolherOpcao(botao);
+
+        $.ajax({
+            url: urlBase + "Home/AlterarDataEntrega",
+            type: "GET"
+        })
+        .done((data) => {
+
+            $(".container-opcao-selecionada").html(data).addClass("fadeIn");
+            $("#botao-confirmar-nova-data-entrega").click(_clickBotaoConfirmarNovaDataEntrega);
+            
+            _desabilitarEnter();
+
+        });
+
+    };
+
+    let _clickBotaoConfirmarNovaDataEntrega = () => {
+
+        let vetInput = $("#input-nova-data-entrega").val().split("-");
+        let data = new Date(vetInput[0], parseInt(vetInput[1]) - 1, vetInput[2]);
+        
+
+        $("#div-mensagem-confirmacao-data").show().addClass("fadeIn");
+        $("#nova-data-entrega").html(data.toLocaleDateString());
+    };
+
     let _escolherOpcao = (botaoSelecionado) => {
 
         let botoesContainer = $(".container-botoes button");
@@ -161,9 +193,8 @@ const SelecionarModulo = (function () {
         $.ajax({
             url: urlBase + "Home/CalcularValorPrecoDistancia",
             type: "POST",
-            data: {
-                distancia: distancia
-            }
+            contentType: "application/json",
+            data: JSON.stringify({ distancia: distancia })
         })
         .done((data) => {
 

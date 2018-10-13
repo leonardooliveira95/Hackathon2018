@@ -104,6 +104,7 @@
   <ItemGroup>
     <Content Include="Content\css\site.css" />
     <Content Include="Content\css\site.min.css" />
+    <Content Include="Content\img\background-site.jpg" />
     <Content Include="Content\img\Logo_Inova_Prudente.png" />
     <Content Include="Global.asax" />
     <Content Include="gulpfile.js" />
@@ -431,6 +432,7 @@
     <Content Include="node_modules\popper.js\dist\umd\popper-utils.min.js" />
     <Content Include="node_modules\popper.js\dist\umd\popper.js" />
     <Content Include="node_modules\popper.js\dist\umd\popper.min.js" />
+    <Content Include="Scripts\app\AlterarDataEntrega.js" />
     <Content Include="Scripts\app\BackdropLoadingModulo.js" />
     <Content Include="Scripts\app\dist\BackdropLoadingModulo.js" />
     <Content Include="Scripts\app\dist\BackdropLoadingModulo.min.js" />
@@ -449,6 +451,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AlterarDataEntregaViewModel.cs" />
     <Compile Include="Models\TrocarEnderecoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -656,6 +659,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\_TrocarEndereco.cshtml" />
+    <Content Include="Views\Home\_AlterarDataEntrega.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

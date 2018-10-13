@@ -7,95 +7,107 @@ html {
 }
 
 body {
-    /*background-image: linear-gradient(180deg, #c3c5e0, #ececec);*/
-    background-color:#9daba0;
+    background-image: linear-gradient(180deg, #c3c5e0, #868686);
+    /*background-color:#9daba0;*/
+    /*background-image: url(../img/background-site.jpg);*/
     background-attachment: fixed;
     background-repeat: no-repeat;
-    margin-bottom: 80px;
+    margin-bottom: 164px;
 }
 
 .icone {
     margin-right: 5px;
 }
 
-.icone-form{
-    margin-right:10px;
+.icone-form {
+    margin-right: 10px;
 }
 
 .container-app {
-    min-height:650px;
+    min-height: 650px;
     margin-top: 15px;
     padding: 15px;
     background-color: #fff;
-    @include box-shadow(4px, 5px, #6d6d6d, 3px);
+
+    @include border-radius(4px);
+    @include box-shadow(4px, 5px,rgba(51, 48, 48, 0.6705882352941176), 3px);
 }
 
 .container-botoes {
     margin-top: 15px;
 
     button {
-        margin-right:5px;
+        margin-right: 5px;
     }
 }
 
 .divisor {
     width: 100%;
-    border-bottom: 1px solid $cor-azul;
+    border-bottom: 1px solid $cor-vermelho;
     margin-bottom: 10px;
 }
 
 .container-opcao-selecionada {
-
-    margin-top:20px;
-
+    margin-top: 20px;
 }
 
 #map {
     width: 100%;
     height: 400px;
     background-color: grey;
-    margin-top:20px;
+    margin-top: 20px;
 }
 
-#botao-escolher-endereco {
-    margin-left:10px;
+#botao-escolher-endereco, #botao-confirmar-nova-data-entrega {
+    margin-left: 10px;
 }
 
-.ui-pnotify-container{
+.ui-pnotify-container {
     @include display-flex();
-    align-items:center;
+    align-items: center;
 }
 
 .ui-pnotify-closer {
-    order:5;
-    margin-left:auto;
+    order: 5;
+    margin-left: auto;
 }
 
 .footer {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 60px;
+    height: 144px;
     line-height: 60px;
     background-color: #F8F9FA;
-    border-top: 5px solid $cor-vermelho;
+    border-top: 2px solid $cor-vermelho;
+}
+
+.lista-links {
+    padding-left: 0;
+    margin-left: 0 !important;
+    line-height: initial;
+    list-style-type: none;
+
+    li {
+        display: block;
+    }
+
+    a {
+        color: rgba(0, 0, 0, 0.5);
+    }
 }
 
 .container-logo-inova {
-
-    width:100px;
+    width: 100px;
 
 
     img {
-        display:block;
+        display: block;
     }
-
 }
 
 #resultado-selecao-novo-endereco {
-
-    margin-top:50px;
-
+    margin-top: 50px;
 }
 
 nav {
@@ -113,29 +125,26 @@ nav {
     }
 
     .nav-link:hover {
-        color: $cor-vermelho !important;
+        color: #dcb4a8 !important;
 
         @include transition(all, 0.2s, ease-in-out);
     }
 }
 
 .container-usuario {
-    
-    cursor:pointer;
+    cursor: pointer;
     margin-left: auto;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(0, 0, 0, 0.5);
 
     @include transition(all, 0.2s, ease-in-out);
 
     &:hover {
-        color: #e4e1cd !important;
+        color: #dcb4a8 !important;
 
         @include transition(all, 0.2s, ease-in-out);
     }
 }
 
 .info-detalhe {
-
-    margin-right:10px;
-
+    margin-right: 10px;
 }

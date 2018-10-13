@@ -23,6 +23,15 @@ namespace InovaPrudente.Controllers
             return PartialView("_TrocarEndereco", vm);
         }
 
+        public ActionResult AlterarDataEntrega()
+        {
+            AlterarDataEntregaViewModel vm = new AlterarDataEntregaViewModel();
+
+            vm.DataEntregaAtual = DateTime.Now;
+
+            return PartialView("_AlterarDataEntrega", vm);
+        }
+
         [HttpPost]
         public ActionResult CalcularValorPrecoDistancia(double distancia)
         {
