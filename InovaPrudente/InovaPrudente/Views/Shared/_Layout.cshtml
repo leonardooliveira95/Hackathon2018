@@ -10,9 +10,24 @@
     @Scripts.Render("~/bundles/LayoutJs")
 
     <title>2MVL</title>
+    <script>
+        var urlBase = "@(Url.Content("~/"))";
+    </script>
+
 </head>
 <body>
-    @RenderBody()
+
+    <header>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#"><span class="fa fa-truck icone"></span>2MVL</a>
+        </nav>
+
+    </header>
+
+    <div class="container container-app">
+        @RenderBody()
+    </div>
 
 </body>
 </html>

@@ -1,0 +1,31 @@
+﻿@using InovaPrudente.Models
+@model TrocarEnderecoViewModel
+
+<div class="container-trocar-endereco">
+
+    <h4>Trocar endereço </h4>
+    <div class="divisor"></div>
+
+    <form>
+        <div class="row">
+
+            <div class="col-md-5 d-flex align-items-center">
+                <span class="fa fa-home icone-form"></span>
+                <input type="text" class="form-control" placeholder="Novo Endereço" id="input-texto-endereco"/>
+                <button class="btn btn-primary" type="button" id="botao-escolher-endereco">Escolher</button>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col">
+                <div id="map" data-endereco-atual="@Model.EnderecoAtual"></div>
+            </div>
+            
+        </div>
+    </form>
+
+</div>
+
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9fSb3smGbtychRD3r70GrQ9Vy_zMW09U&callback=SelecionarModulo.carregarMapa&libraries=geometry">
+</script>
