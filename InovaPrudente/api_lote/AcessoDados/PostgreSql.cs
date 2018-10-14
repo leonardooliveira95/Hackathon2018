@@ -12,7 +12,7 @@ namespace apiInovaPP.AcessoDados
     {
 
 
-        private string strcon = "Server=localhost;Port=5432;User Id=incorporadora;Password=Incorp123;Database=inovapp;";
+        private string strcon = "Server=pgsql.99codgo.com.br;Port=5432;User Id=99codgo1;Password=inovapp@123;Database=99codgo1;";
 
         public NpgsqlConnection Connection = null;
         private NpgsqlTransaction trans = null;

@@ -114,7 +114,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CidadeController.cs" />
     <Compile Include="Controllers\HistoricoEntregaController.cs" />
-    <Compile Include="Controllers\EmpresaController.cs" />
+    <Compile Include="Controllers\EntregaController.cs" />
     <Compile Include="Controllers\PessoaController.cs" />
     <Compile Include="Controllers\TipoPessoaController.cs" />
     <Compile Include="Excecao\ParametroInvalidoException.cs" />
@@ -129,8 +129,14 @@
     <Compile Include="Models\Entrega\EntregaDespesa.cs" />
     <Compile Include="Models\Entrega\Historico.cs" />
     <Compile Include="Models\Financeiro\CustoFrete.cs" />
+    <Compile Include="Models\PessoaEndereco.cs" />
     <Compile Include="Models\Ponto\Ponto.cs" />
     <Compile Include="Models\Ponto\PontoHorarioFuncionamento.cs" />
+    <Compile Include="Models\Repository\CustoFreteRepository.cs" />
+    <Compile Include="Models\Repository\EntregaDespesaRepository.cs" />
+    <Compile Include="Models\Repository\EntregaRepository.cs" />
+    <Compile Include="Models\Repository\Interface\ICustoFreteRepository.cs" />
+    <Compile Include="Models\Repository\Interface\IEntregaDespesaRepository.cs" />
     <Compile Include="Models\Repository\Interface\IEntregaRepository.cs" />
     <Compile Include="Models\Empresa.cs" />
     <Compile Include="Models\Estados.cs" />
