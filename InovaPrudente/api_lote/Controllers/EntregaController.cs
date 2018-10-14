@@ -71,15 +71,11 @@ namespace apiInovaPP.Controllers
 
         //POST api/<controller>
         [HttpPost]
-        //(Entrega.Entrega entrega, int idCidade, int distancia, string CodigoRastreio, string Logradouro)
-        public IHttpActionResult Post([FromBody]Entrega entrega, int idCidade, int distancia, string CodigoRastreio, string Logradouro)
+        public IHttpActionResult Post([FromBody]Entrega entrega,  int idCidade,int distancia, string Logradouro2)
         {
             try
             {
-                var result = _repositoryEntregaRepository.PostTrocarEnderecoEntrega(entrega, idCidade, distancia, CodigoRastreio, Logradouro);
-                //var result = _repositoryEntregaRepository.GetCalcularTrocaEndereco(idCidade, distancia);
-
-
+                var result = _repositoryEntregaRepository.PostTrocarEnderecoEntrega(entrega, idCidade, distancia, Logradouro2);
                 if (result != null)
                 {
                     return Ok(result);

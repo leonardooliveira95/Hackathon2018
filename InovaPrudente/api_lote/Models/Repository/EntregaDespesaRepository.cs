@@ -33,7 +33,7 @@ namespace apiInovaPP.Models.Repository
                         _PostgreSql.Parametros.Clear();
                         _Parametros.Add("@id_entrega", despesa.IdEntrega);
                         _Parametros.Add("@data_despesa", despesa.Data_Despesa);
-                        _Parametros.Add("@valor", despesa.Valor);
+                        _Parametros.Add("@valor", Convert.ToDecimal(despesa.Valor));
 
                         _PostgreSql.Parametros.AddRange(_Parametros.Params);
 

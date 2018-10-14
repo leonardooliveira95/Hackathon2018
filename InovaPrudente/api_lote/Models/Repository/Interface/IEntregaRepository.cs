@@ -11,7 +11,7 @@ namespace apiInovaPP.Models.Repository.Interface
         Entrega.Entrega Get(int idEntrega);
         Entrega.Entrega Get(string codigoRastreio);
         string GetCalcularTrocaEndereco(int idCidade, decimal distancia);
-        bool PostTrocarEnderecoEntrega(Entrega.Entrega entrega, int idCidade, int distancia, string CodigoRastreio, string Logradouro);
+        bool PostTrocarEnderecoEntrega(Entrega.Entrega entrega, int idCidade, int distancia, string Logradouro2);
         bool Add(Entrega.Entrega entrega);
         bool Update(Entrega.Entrega entrega);
     }
