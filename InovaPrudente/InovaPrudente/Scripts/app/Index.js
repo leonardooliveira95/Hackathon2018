@@ -4,6 +4,7 @@ let markers = [];
 const SelecionarModulo = (function () {
 
     let _armarios = [];
+    let _distancia;
 
     let inicializar = () => {
 
@@ -34,23 +35,23 @@ const SelecionarModulo = (function () {
             url: urlBase + "Home/TrocarEndereco",
             type: "GET"
         })
-            .done((data) => {
+        .done((data) => {
 
-                $(".container-opcao-selecionada").html(data).addClass("fadeIn");
-                $("#botao-escolher-endereco").click(_clickBotaoEscolherEndereco);
-                $("#botao-confirmar-alteracao-endereco").click(_clickBotaoConfirmarAlteracaoEndereco);
-                $("#botao-escolher-outro-local").click(_clickBotaoEscolherOutroLocal);
-                $("#input-texto-endereco").on("keypress", _keypressTextoEndereco);
+            $(".container-opcao-selecionada").html(data).addClass("fadeIn");
+            $("#botao-escolher-endereco").click(_clickBotaoEscolherEndereco);
+            $("#botao-confirmar-alteracao-endereco").click(_clickBotaoConfirmarAlteracaoEndereco);
+            $("#botao-escolher-outro-local").click(_clickBotaoEscolherOutroLocal);
+            $("#input-texto-endereco").on("keypress", _keypressTextoEndereco);
 
-                _desabilitarEnter();
+            _desabilitarEnter();
 
-            });
+        });
 
     };
 
     let _keypressTextoEndereco = (event) => {
 
-        if (event.which == 10 || event.which == 13) {
+        if ((event !== undefined && event !== null) && (event.which == 10 || event.which == 13)) {
             _clickBotaoEscolherEndereco();
         }
     };
@@ -70,13 +71,35 @@ const SelecionarModulo = (function () {
 
     let _clickBotaoConfirmarAlteracaoEndereco = () => {
 
-        _scrollToBottom();
+        let logradouro = $("#input-texto-endereco");
 
-        let botoesContainer = $(".container-botoes-confirmacao button");
-        botoesContainer.prop("disabled", true);
+        $.ajax({
+            url: "http://localhost:11014/api/Entrega/Post?idCidade=1&distancia=" + parseInt(_distancia) + "&Logradouro2=" + logradouro.val(),
+            type: "POST",
+            data: {
 
-        $("#resultado-confirmacao-troca-endereco").fadeIn("fast");
+                Id_Entrega: 3,
+                Descricao: "Teste",
+                Nome_cliente: "",
+                IdEndereco: "",
+                DataPrevista: "14/10/2018",
+                IdTipoEntrega: 1,
+                IdEmpresa: 1,
+                CodigoRastreio: 1,
+                Status: "",
+                Logradouro: ""
+            }
+        })
+        .done((data) => {
 
+            _scrollToBottom();
+
+            let botoesContainer = $(".container-botoes-confirmacao button");
+            botoesContainer.prop("disabled", true);
+
+            $("#resultado-confirmacao-troca-endereco").fadeIn("fast");
+
+        });
     };
 
     let _clickBotaoEscolherOutroLocal = () => {
@@ -179,6 +202,7 @@ const SelecionarModulo = (function () {
                 map.panTo(marker.position);
 
                 let distancia = google.maps.geometry.spherical.computeDistanceBetween(marker.position, markers[0].position);
+                _distancia = distancia;
                 _calcularValorPrecoDistancia(distancia);
 
                 $("#span-novo-endereco").html(endereco);
@@ -227,40 +251,50 @@ const SelecionarModulo = (function () {
             center: { lat: -34.397, lng: 150.644 }
         });
 
-        $.each(SelecionarModulo.armarios, (index, valor) => {
+        $.ajax({
+            url: "http://localhost:11014/api/PontoRetirada/Get",
+            type: "GET",
+        })
+        .done((data) => {
 
-            let geocoder = new google.maps.Geocoder();
+            $.each(data, (index, valor) => {
 
-            geocoder.geocode({ "address": valor.Endereco }, (results, status) => {
+                let geocoder = new google.maps.Geocoder();
 
-                let latLng = { lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng() };
+                geocoder.geocode({ "address": valor.EnderecoPonto }, (results, status) => {
 
-                let marker = new google.maps.Marker({
-                    position: latLng,
-                    map: map,
-                    title: valor.Endereco
+                    let latLng = { lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng() };
+
+                    let marker = new google.maps.Marker({
+                        position: latLng,
+                        map: map,
+                        title: valor.Endereco
+                    });
+
+                    map.setZoom(17);
+                    map.panTo(marker.position);
+
                 });
 
-                map.setZoom(17);
-                map.panTo(marker.position);
-
             });
-            
-        });
 
+        });
     };
 
     let _calcularValorPrecoDistancia = (distancia) => {
 
         $.ajax({
-            url: urlBase + "Home/CalcularValorPrecoDistancia",
-            type: "POST",
+            url: "http://localhost:11014/api/Entrega/Get",
+            type: "GET",
             contentType: "application/json",
-            data: JSON.stringify({ distancia: distancia })
+            data: {
+                idCidade: 1,
+                distancia: parseInt(distancia)
+            }
         })
         .done((data) => {
 
-            $("#span-novo-valor-frete").html("R$ " + data.valor);
+            $("#span-novo-valor-frete").html("R$ " + data);
             $("#resultado-selecao-novo-endereco").show().removeClass("fadeIn").addClass("fadeIn");
 
             _scrollToBottom();

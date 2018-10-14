@@ -51,24 +51,34 @@ namespace apiInovaPP.Models.Repository
                 throw new Exception(ex.Message);
             }
         }
-        public bool Add(Historico Historico)
+        public bool Add(IEnumerable<Historico> historico)
         {
             try
             {
-                _Parametros.Params.Clear();
-                _PostgreSql.Parametros.Clear();
-                _Parametros.Add("@id_entrega", Historico.IdEntrega);
-                _Parametros.Add("@data_hist", Historico.Data_Historico);
-                _Parametros.Add("@msg_historico", Historico.Mensagem);
-
+                
                 _PostgreSql.Script = "insert into historico_entrega (id_entrega, data_hist, msg_historico) values (@id_entrega, @data_hist,@msg_historico)";
-                _PostgreSql.Parametros.AddRange(_Parametros.Params);
 
-                if (!_PostgreSql.ExecuteNonQuery())
+                
+                historico.ToList<Historico>().ForEach(hist =>
                 {
-                    throw new Exception("Erro: " + _PostgreSql.msg);
+                    if (hist.Id_Historico == 0)
+                    {
+                        _PostgreSql.Parametros.Clear();
+                        _Parametros.Add("@data_hist", hist.Data_Historico);
+                        _Parametros.Add("@msg_historico", hist.Mensagem);
+                        _Parametros.Add("@id_entrega", hist.IdEntrega);
+
+
+                        _PostgreSql.Parametros.AddRange(_Parametros.Params);
+
+                        if (!_PostgreSql.ExecuteNonQuery())
+                        {
+                            throw new Exception("Erro: " + _PostgreSql.msg);
+                        }
+                    }                 
                 }
 
+                );       
                 return true;
             }
             catch (Exception ex)
