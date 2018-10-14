@@ -16,8 +16,8 @@ namespace apiInovaPP
     {
         public static void Register(HttpConfiguration config)
         {
+            config.EnableCors();
 
-            
             config.MapHttpAttributeRoutes();
             config.Routes.MapHttpRoute("DefaultApiWithId", "api/{controller}/{id}", new { id = RouteParameter.Optional });
             //config.Routes.MapHttpRoute("DefaultApiWithActionWithId", "api/{controller}/{action}/{id}", new {  id = RouteParameter.Optional });

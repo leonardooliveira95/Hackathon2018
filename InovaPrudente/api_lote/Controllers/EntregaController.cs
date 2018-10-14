@@ -5,9 +5,11 @@ using apiInovaPP.Models.Repository.Interface;
 using System;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace apiInovaPP.Controllers
-{    
+{
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class EntregaController : ApiController
     {
         static readonly IEntregaRepository _repositoryEntregaRepository = new EntregaRepository();
