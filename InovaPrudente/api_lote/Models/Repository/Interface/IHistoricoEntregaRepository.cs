@@ -13,7 +13,7 @@ namespace apiInovaPP.Models.Repository.Interface
     {
         IEnumerable<Historico> Get(int IdEntrega);
         IEnumerable<Historico> Get(string CodigoRastreio);
-        bool Add(Historico historico);        
+        bool Add(IEnumerable<Historico> historico);        
         
     }
 }

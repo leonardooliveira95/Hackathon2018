@@ -67,32 +67,32 @@ namespace apiInovaPP.Controllers
         }
 
         // POST api/<controller>
-        [HttpPost]
-        public IHttpActionResult Post([FromBody]Historico historico)
-        {
-            if (historico == null)
-                return BadRequest("Parametro inválido.");
+        //[HttpPost]
+        //public IHttpActionResult Post([FromBody] Historico historico)
+        //{
+        //    if (historico == null)
+        //        return BadRequest("Parametro inválido.");
 
-            try
-            {
-                if (_repositoryHistoricoEntrega.Add(historico))
-                {
-                    return Created<Historico>(Request.RequestUri + historico.Id_Historico.ToString(), historico);
-                }
-                else
-                {
-                    return Conflict();
-                }
-            }
-            catch (Exception ex)
-            {
-                HttpResponseMessage response = Request.CreateResponse(System.Net.HttpStatusCode.BadRequest);
-                response.Content = new StringContent(ex.Message);
-                response.RequestMessage = Request;
-                return ResponseMessage(response);
-            }
+        //    try
+        //    {
+        //        if (_repositoryHistoricoEntrega.Add(historico))
+        //        {
+        //            return Created<Historico>(Request.RequestUri + historico.Id_Historico.ToString(), historico);
+        //        }
+        //        else
+        //        {
+        //            return Conflict();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        HttpResponseMessage response = Request.CreateResponse(System.Net.HttpStatusCode.BadRequest);
+        //        response.Content = new StringContent(ex.Message);
+        //        response.RequestMessage = Request;
+        //        return ResponseMessage(response);
+        //    }
           
-        }
+        //}
 
        
 
