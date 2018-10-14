@@ -152,6 +152,34 @@ namespace apiInovaPP.Controllers
 
         //}
 
+        [Route("api/Entrega/AlterarDataEntrega")]
+        [HttpPut]
+        public IHttpActionResult AlterarDataEntrega([FromBody]Entrega entrega)
+        {
+            if (entrega == null)
+                return BadRequest("Parametro inválido.");
+
+            try
+            {
+                if (_repositoryEntregaRepository.ExtenderPrazoColeta(entrega))
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return Conflict();
+                }
+            }
+            catch (Exception ex)
+            {
+                HttpResponseMessage response = Request.CreateResponse(System.Net.HttpStatusCode.BadRequest);
+                response.Content = new StringContent(ex.Message);
+                response.RequestMessage = Request;
+                return ResponseMessage(response);
+            }
+
+        }
+
 
     }
 }
