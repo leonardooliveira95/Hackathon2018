@@ -71,7 +71,7 @@ namespace apiInovaPP.Controllers
 
         //POST api/<controller>
         [HttpPost]
-        public IHttpActionResult Post([FromBody]Entrega entrega,  int idCidade,int distancia, string Logradouro2)
+        public IHttpActionResult Post([FromBody]Entrega entrega,  int idCidade, int distancia, string Logradouro2)
         {
             try
             {
@@ -124,33 +124,33 @@ namespace apiInovaPP.Controllers
 
         }
 
-        [HttpPut]
-        public IHttpActionResult Post([FromBody]Entrega entrega)
-        {
-            if (entrega == null)
-                return BadRequest("Parametro inválido.");
+        //[HttpPut]
+        //public IHttpActionResult Post([FromBody]Entrega entrega)
+        //{
+        //    if (entrega == null)
+        //        return BadRequest("Parametro inválido.");
 
-            try
-            {
-                if (_repositoryEntregaRepository.Add(entrega))
-                {
-                    return Ok();
-                }
-                else
-                {
-                    return Conflict();
-                }
-            }
-            catch (Exception ex)
-            {
+        //    try
+        //    {
+        //        if (_repositoryEntregaRepository.Add(entrega))
+        //        {
+        //            return Ok();
+        //        }
+        //        else
+        //        {
+        //            return Conflict();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                HttpResponseMessage response = Request.CreateResponse(System.Net.HttpStatusCode.BadRequest);
-                response.Content = new StringContent(ex.Message);
-                response.RequestMessage = Request;
-                return ResponseMessage(response);
-            }
+        //        HttpResponseMessage response = Request.CreateResponse(System.Net.HttpStatusCode.BadRequest);
+        //        response.Content = new StringContent(ex.Message);
+        //        response.RequestMessage = Request;
+        //        return ResponseMessage(response);
+        //    }
 
-        }
+        //}
 
 
     }

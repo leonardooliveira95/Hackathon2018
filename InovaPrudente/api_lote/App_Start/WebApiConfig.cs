@@ -33,9 +33,9 @@ namespace apiInovaPP
             //config.Routes.MapHttpRoute("DefaultApiDeleteWithId", "api/{controller}/{id}", new { action = "Delete" }, new { httpMethod = new HttpMethodConstraint(HttpMethod.Delete) });
 
 
-            var corsAttr = new EnableCorsAttribute("http://www.machadoincorporadora.com.br,http://machadoincorporadora.com.br,http://localhost:11033,http://localhost:8931,http://localhost,http://www.99codgo.com.br,http://99codgo.com.br,http://rti.99codgo.com.br,https://rti.99codgo.com.br", "*", "*");
-            //var corsAttr = new EnableCorsAttribute("http://localhost:11033", "*", "*");
-            config.EnableCors(corsAttr);
+            //var corsAttr = new EnableCorsAttribute("http://www.machadoincorporadora.com.br,http://machadoincorporadora.com.br,http://localhost:11033,http://localhost:8931,http://localhost,http://www.99codgo.com.br,http://99codgo.com.br,http://rti.99codgo.com.br,https://rti.99codgo.com.br", "*", "*");
+            //var corsAttr = new EnableCorsAttribute("http://localhost:54873", "*", "*");
+            //config.EnableCors(corsAttr);
 
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/octet-stream"));
             config.Filters.Add(new ExceptionConvertFilter());

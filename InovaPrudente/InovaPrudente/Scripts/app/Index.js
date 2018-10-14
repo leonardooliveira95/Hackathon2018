@@ -4,6 +4,7 @@ let markers = [];
 const SelecionarModulo = (function () {
 
     let _armarios = [];
+    let _distancia;
 
     let inicializar = () => {
 
@@ -50,7 +51,7 @@ const SelecionarModulo = (function () {
 
     let _keypressTextoEndereco = (event) => {
 
-        if (event.which == 10 || event.which == 13) {
+        if ((event !== undefined && event !== null) && (event.which == 10 || event.which == 13)) {
             _clickBotaoEscolherEndereco();
         }
     };
@@ -70,9 +71,24 @@ const SelecionarModulo = (function () {
 
     let _clickBotaoConfirmarAlteracaoEndereco = () => {
 
+        let logradouro = $("#input-texto-endereco");
+
         $.ajax({
-            url: "http://localhost:11014/api/PontoRetirada/Get",
-            type: "PUT" 
+            url: "http://localhost:11014/api/Entrega/Post?idCidade=1&distancia=" + parseInt(_distancia) + "&Logradouro2=" + logradouro.val(),
+            type: "POST",
+            data: {
+
+                Id_Entrega: 3,
+                Descricao: "Teste",
+                Nome_cliente: "",
+                IdEndereco: "",
+                DataPrevista: "14/10/2018",
+                IdTipoEntrega: 1,
+                IdEmpresa: 1,
+                CodigoRastreio: 1,
+                Status: "",
+                Logradouro: ""
+            }
         })
         .done((data) => {
 
@@ -186,6 +202,7 @@ const SelecionarModulo = (function () {
                 map.panTo(marker.position);
 
                 let distancia = google.maps.geometry.spherical.computeDistanceBetween(marker.position, markers[0].position);
+                _distancia = distancia;
                 _calcularValorPrecoDistancia(distancia);
 
                 $("#span-novo-endereco").html(endereco);
