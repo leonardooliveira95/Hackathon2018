@@ -123,14 +123,14 @@ const SelecionarModulo = (function () {
             url: urlBase + "Home/AlterarDataEntrega",
             type: "GET"
         })
-            .done((data) => {
+        .done((data) => {
 
-                $(".container-opcao-selecionada").html(data).addClass("fadeIn");
-                $("#botao-confirmar-nova-data-entrega").click(_clickBotaoConfirmarNovaDataEntrega);
+            $(".container-opcao-selecionada").html(data).addClass("fadeIn");
+            $("#botao-confirmar-nova-data-entrega").click(_clickBotaoConfirmarNovaDataEntrega);
 
-                _desabilitarEnter();
+            _desabilitarEnter();
 
-            });
+        });
 
     };
 
@@ -138,10 +138,33 @@ const SelecionarModulo = (function () {
 
         let vetInput = $("#input-nova-data-entrega").val().split("-");
         let data = new Date(vetInput[0], parseInt(vetInput[1]) - 1, vetInput[2]);
+        let str = vetInput[0] + "-" + vetInput[1] + "-" + vetInput[2];
 
+        $.ajax({
 
-        $("#div-mensagem-confirmacao-data").show().addClass("fadeIn");
-        $("#nova-data-entrega").html(data.toLocaleDateString());
+            url: "http://localhost:11014/api/Entrega/AlterarDataEntrega",
+            type: "PUT",
+            data: {
+
+                Id_Entrega: 3,
+                Descricao: "Teste",
+                Nome_cliente: "",
+                IdEndereco: "",
+                DataPrevista: str,
+                IdTipoEntrega: 1,
+                IdEmpresa: 1,
+                CodigoRastreio: 1,
+                Status: "",
+                Logradouro: ""
+            }
+        })
+        .done((data2) => {
+
+            $("#div-mensagem-confirmacao-data").show().addClass("fadeIn");
+            $("#nova-data-entrega").html(data.toLocaleDateString());
+
+        });
+        
     };
 
     let _clickEntregarArmario = (event) => {
