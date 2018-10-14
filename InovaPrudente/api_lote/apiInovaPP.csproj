@@ -28,6 +28,7 @@
     <RestorePackages>true</RestorePackages>
     <TargetFrameworkProfile />
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -116,6 +117,9 @@
     <Compile Include="Controllers\HistoricoEntregaController.cs" />
     <Compile Include="Controllers\EntregaController.cs" />
     <Compile Include="Controllers\PessoaController.cs" />
+    <Compile Include="Controllers\PontoRetiradaController.cs" />
+    <Compile Include="Controllers\TipoEncomendaController.cs" />
+    <Compile Include="Controllers\TipoEntregaController.cs" />
     <Compile Include="Controllers\TipoPessoaController.cs" />
     <Compile Include="Excecao\ParametroInvalidoException.cs" />
     <Compile Include="Filters\ExceptionConvertFilter.cs" />
@@ -124,12 +128,14 @@
     </Compile>
     <Compile Include="Models\Cidade.cs" />
     <Compile Include="Models\Email.cs" />
+    <Compile Include="Models\Entrega\TipoEntrega.cs" />
     <Compile Include="Models\Financeiro\Despesa.cs" />
     <Compile Include="Models\Entrega\Entrega.cs" />
     <Compile Include="Models\Entrega\EntregaDespesa.cs" />
     <Compile Include="Models\Entrega\Historico.cs" />
     <Compile Include="Models\Financeiro\CustoFrete.cs" />
     <Compile Include="Models\PessoaEndereco.cs" />
+    <Compile Include="Models\PontoRetirada.cs" />
     <Compile Include="Models\Ponto\Ponto.cs" />
     <Compile Include="Models\Ponto\PontoHorarioFuncionamento.cs" />
     <Compile Include="Models\Repository\CustoFreteRepository.cs" />
@@ -146,9 +152,16 @@
     <Compile Include="Models\Repository\Interface\ICidadeRepository.cs" />
     <Compile Include="Models\Repository\Interface\IHistoricoEntregaRepository.cs" />
     <Compile Include="Models\Repository\Interface\IPessoaRepository.cs" />
+    <Compile Include="Models\Repository\Interface\IPontoRetiradaRepository.cs" />
+    <Compile Include="Models\Repository\Interface\ITipoEncomendaRepository.cs" />
+    <Compile Include="Models\Repository\Interface\ITipoEntregaRepository.cs" />
     <Compile Include="Models\Repository\Interface\ITipoPessoaRepository.cs" />
     <Compile Include="Models\Repository\PessoaRepository.cs" />
+    <Compile Include="Models\Repository\PontoRetiradaRepository.cs" />
+    <Compile Include="Models\Repository\TipoEncomendaRepository.cs" />
+    <Compile Include="Models\Repository\TipoEntregaRepository.cs" />
     <Compile Include="Models\Repository\TipoPessoaRepository.cs" />
+    <Compile Include="Models\TipoEncomenda.cs" />
     <Compile Include="Models\TipoPagamento.cs" />
     <Compile Include="Models\TipoPessoa.cs" />
     <Compile Include="Models\Tipo\Tipo.cs" />
