@@ -159,7 +159,7 @@ namespace apiInovaPP.Models.Repository
             return retValor;
         }
 
-        public bool PostTrocarEnderecoEntrega(Entrega.Entrega entrega, int idCidade, int distancia, string CodigoRastreio, string Logradouro)
+        public bool PostTrocarEnderecoEntrega(Entrega.Entrega entrega, int idCidade, int distancia, string Logradouro)
         {            
             string custo = GetCalcularTrocaEndereco(idCidade, distancia);
 
