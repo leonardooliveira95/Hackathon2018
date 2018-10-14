@@ -135,9 +135,40 @@ namespace apiInovaPP.Models.Repository
 
         public bool ExtenderPrazoColeta(Entrega.Entrega entrega)
         {
+            IHistoricoEntregaRepository _repoHistorico = new HistoricoEntregaRepository();
+            IEntregaDespesaRepository _repoDespesa = new EntregaDespesaRepository();
 
+            try
+            {
+                StringBuilder sb = new StringBuilder();
+                _Parametros.Params.Clear();
+                _PostgreSql.Parametros.Clear();
+                sb.Append("update entrega set data_prevista = @data_prevista where id_entrega = @id_entrega ");
+                _Parametros.Add("@data_prevista", entrega.DataPrevista);
+                _Parametros.Add("@id_entrega", entrega.Id_Entrega);
 
-            return false;
+                _PostgreSql.Script = sb.ToString();
+                _PostgreSql.Parametros.AddRange(_Parametros.Params);
+
+                if (!_PostgreSql.ExecuteNonQuery())
+                {
+                    throw new Exception("Erro: " + _PostgreSql.msg);
+                }
+
+                Historico hist = new Historico();
+                hist.Mensagem = string.Format("Alteração da data de entrega para {0}", entrega.DataPrevista);
+                hist.IdEntrega = entrega.Id_Entrega;
+                entrega.Historico.Add(hist);
+                _repoHistorico.Add(entrega.Historico);
+
+                //_repoDespesa.Add(entrega.Despesas);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro: " + ex.Message);
+            }
         }
 
         public string GetCalcularTrocaEndereco(int idCidade, decimal distancia)
