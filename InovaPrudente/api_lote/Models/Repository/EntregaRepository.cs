@@ -210,9 +210,7 @@ namespace apiInovaPP.Models.Repository
 
             return Update(entrega);
         }
-
-
-
+        
         public IEnumerable<Entrega.Entrega> ExecutarConsulta(PostgreSql _PostgreSql)
         {
             DataTable dtbResultado;
