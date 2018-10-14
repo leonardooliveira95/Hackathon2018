@@ -1,0 +1,30 @@
+﻿@using InovaPrudente.Models
+@model AlterarDataEntregaViewModel
+
+<div class="container-trocar-data-entrega">
+
+    <h4>Alterar data de entrega</h4>
+    <div class="divisor"></div>
+
+    <div id="selecao-nova-data-entrega">
+        <div style="margin-bottom:15px;">A data de entrega está programada para <b>@Model.DataEntregaAtual.ToString()</b></div>
+        <form>
+            <div class="row">
+                <div class="col-md-5 d-flex align-items-center">
+                    <span class="fa fa-calendar icone-form"></span>
+                    <input type="date" class="form-control" id="input-nova-data-entrega"/>
+                    <button type="button" id="botao-confirmar-nova-data-entrega" class="btn btn-primary">Alterar</button>
+                </div>
+            </div>
+            
+        </form>
+        
+    </div>
+
+    <div id="div-mensagem-confirmacao-data" class="animated" style="display:none;margin-top:20px;">
+        <h4>Confirmação</h4>
+        <div class="divisor"></div>
+        <div class="alert alert-success"><span class="fa fa-check icone"></span>Tudo pronto! A data de entrega foi alterada para <b id="nova-data-entrega"></b></div>
+    </div>
+
+</div>
