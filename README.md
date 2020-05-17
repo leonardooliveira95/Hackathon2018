@@ -1,4 +1,4 @@
-# 2MVL
+# Hackathon 2018 - Varejo e turismo
 
 ### Manual de compilação
 
